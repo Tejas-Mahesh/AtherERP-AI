@@ -49,8 +49,22 @@ Incremental Software Development Model
 - Nginx
 - AWS
 
+## Description
+
+AetherERP AI is an enterprise-grade ERP platform built with Django, PostgreSQL, and Artificial Intelligence. It is designed to support multiple organizations with modules for HR, Inventory, Sales, Finance, Payroll, Analytics, and AI-powered business insights.
+
+
+## Current Progress
+
+- Project Architecture
+- Database Design
+- UML Documentation
+- Django Foundation
+- PostgreSQL Integration
+- Custom User Model
+- Organization Module
+
+## Next Module
+
+Employee Management
 ---
-
-## Current Phase
-
-Phase 0 – Planning & Architecture

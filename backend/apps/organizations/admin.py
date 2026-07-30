@@ -1,3 +1,25 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Organization
+
+
+@admin.register(Organization)
+class OrganizationAdmin(admin.ModelAdmin):
+    list_display = (
+        "name",
+        "email",
+        "phone",
+        "country",
+        "is_active",
+    )
+
+    search_fields = (
+        "name",
+        "legal_name",
+        "email",
+    )
+
+    list_filter = (
+        "country",
+        "is_active",
+    )
