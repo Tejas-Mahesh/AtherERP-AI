@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     "apps.common",
     "apps.accounts",
     "apps.organizations",
-    "apps.employees",
+    'apps.hr',
     # "apps.attendance",
     # "apps.payroll",
     # "apps.inventory",
