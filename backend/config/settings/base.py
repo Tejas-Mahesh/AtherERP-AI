@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'apps.hr',
     # "apps.attendance",
     # "apps.payroll",
-    # "apps.inventory",
+     "apps.inventory",
     # "apps.suppliers",
     # "apps.purchases",
     # "apps.customers",
