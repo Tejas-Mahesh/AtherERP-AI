@@ -38,4 +38,8 @@ urlpatterns = [
         "api/organizations/",
         include("apps.organizations.urls"),
     ),
+     path(
+        "api/purchases/",
+        include("apps.purchases.urls"),
+     ),
 ]

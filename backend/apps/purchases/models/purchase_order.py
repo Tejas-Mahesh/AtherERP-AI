@@ -3,7 +3,7 @@ from django.db import models
 
 from apps.common.models import BaseModel
 from apps.organizations.models import Organization
-# from apps.suppliers.models import Supplier
+from apps.suppliers.models import Supplier
 from apps.accounts.models import User
 
 
