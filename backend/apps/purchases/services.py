@@ -124,6 +124,13 @@ class PurchaseOrderService:
        return PurchaseOrder.objects.create(
             **validated_data
         )
+    @staticmethod
+    def validate_supplier(supplier):
+
+        if supplier.status != "ACTIVE":
+            raise ValueError(
+                "Cannot create Purchase Order for inactive supplier."
+            )
 class GoodsReceiptService:
     """
     Process Goods Receipt.
