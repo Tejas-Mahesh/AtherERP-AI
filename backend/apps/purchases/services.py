@@ -131,6 +131,44 @@ class PurchaseOrderService:
             raise ValueError(
                 "Cannot create Purchase Order for inactive supplier."
             )
+
+from django.db import transaction
+
+
+class PurchaseOrderStatusService:
+    """
+    Handles automatic Purchase Order status updates.
+    """
+
+    @staticmethod
+    @transaction.atomic
+    def update_status(purchase_order):
+        items = purchase_order.items.all()
+
+        if not items.exists():
+            purchase_order.status = "DRAFT"
+            purchase_order.save()
+            return purchase_order
+
+        total_qty = 0
+        received_qty = 0
+
+        for item in items:
+            total_qty += item.quantity
+            received_qty += item.received_quantity
+
+        if received_qty == 0:
+            purchase_order.status = "ORDERED"
+
+        elif received_qty < total_qty:
+            purchase_order.status = "PARTIALLY_RECEIVED"
+
+        else:
+            purchase_order.status = "COMPLETED"
+
+        purchase_order.save()
+
+        return purchase_order
 class GoodsReceiptService:
     """
     Process Goods Receipt.

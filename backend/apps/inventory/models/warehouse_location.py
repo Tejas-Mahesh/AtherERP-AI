@@ -1,18 +1,18 @@
 from django.db import models
 
 from apps.common.models import BaseModel
-from apps.organizations.models import Organization
+from .warehouse import Warehouse
 
 
-class Unit(BaseModel):
+class WarehouseLocation(BaseModel):
     """
-    Unit of Measurement (UOM)
+    Warehouse Storage Location
     """
 
-    organization = models.ForeignKey(
-        Organization,
+    warehouse = models.ForeignKey(
+        Warehouse,
         on_delete=models.CASCADE,
-        related_name="units",
+        related_name="locations",
     )
 
     name = models.CharField(
@@ -20,11 +20,7 @@ class Unit(BaseModel):
     )
 
     code = models.CharField(
-        max_length=20,
-    )
-
-    symbol = models.CharField(
-        max_length=10,
+        max_length=30,
     )
 
     description = models.TextField(
@@ -36,18 +32,20 @@ class Unit(BaseModel):
     )
 
     class Meta:
-        ordering = ["name"]
-        verbose_name = "Unit"
-        verbose_name_plural = "Units"
+
+        ordering = [
+            "name",
+        ]
+
         constraints = [
             models.UniqueConstraint(
                 fields=[
-                    "organization",
+                    "warehouse",
                     "code",
                 ],
-                name="unique_unit_code_per_organization",
+                name="unique_location_code_per_warehouse",
             ),
         ]
 
     def __str__(self):
-        return f"{self.name} ({self.symbol})"
+        return f"{self.warehouse.code} - {self.code}"

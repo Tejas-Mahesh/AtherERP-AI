@@ -40,10 +40,9 @@ class Category(BaseModel):
     )
 
     class Meta:
-
-        ordering = [
-            "name",
-        ]
+        ordering = ["name"]
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
 
         constraints = [
             models.UniqueConstraint(

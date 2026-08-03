@@ -32,10 +32,12 @@ class GoodsReceipt(BaseModel):
     receipt_date = models.DateField()
 
     received_by = models.ForeignKey(
-        User,
-        on_delete=models.PROTECT,
-        related_name="goods_receipts",
-    )
+    User,
+    on_delete=models.SET_NULL,
+    null=True,
+    blank=True,
+    related_name="goods_receipts",
+)
 
     remarks = models.TextField(
         blank=True,
