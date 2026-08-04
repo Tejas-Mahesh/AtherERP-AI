@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # Third Party Apps
     "rest_framework",
     "corsheaders",
+    "django_filters",
     "rest_framework_simplejwt.token_blacklist",
     # Local Apps
     "apps.common",
@@ -57,7 +58,7 @@ INSTALLED_APPS = [
     "apps.suppliers",
     "apps.purchases",
     # "apps.customers",
-    # "apps.sales",
+    "apps.sales",
     # "apps.finance",
     # "apps.analytics",
     # "apps.ai_engine",
@@ -208,19 +209,25 @@ AUTH_USER_MODEL = "accounts.User"
 
 REST_FRAMEWORK = {
 
-    "DEFAULT_AUTHENTICATION_CLASSES": (
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
 
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    "DEFAULT_AUTHENTICATION_CLASSES": [
 
         "rest_framework.authentication.SessionAuthentication",
 
-    ),
+        "rest_framework.authentication.BasicAuthentication",
+    ],
 
-    "DEFAULT_PERMISSION_CLASSES": (
+    "DEFAULT_FILTER_BACKENDS": [
 
-        "rest_framework.permissions.IsAuthenticated",
+        "django_filters.rest_framework.DjangoFilterBackend",
 
-    ),
+        "rest_framework.filters.SearchFilter",
+
+        "rest_framework.filters.OrderingFilter",
+    ],
 }
 SIMPLE_JWT = {
 

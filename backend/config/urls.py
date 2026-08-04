@@ -26,7 +26,7 @@ urlpatterns = [
     ),
 
     path(
-        "api/accounts/",
+        "api/",
         include("apps.accounts.urls"),
     ),
 
@@ -36,7 +36,7 @@ urlpatterns = [
     ),
 
     path(
-        "api/organizations/",
+        "api/",
         include("apps.organizations.urls"),
     ),
      path(
