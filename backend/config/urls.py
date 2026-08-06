@@ -49,6 +49,10 @@ urlpatterns = [
         include("apps.suppliers.urls"),
     ),
 
+    path(
+        "api/sales/",
+        include("apps.sales.api.urls"),
+    ),
      
 ]
 if settings.DEBUG:

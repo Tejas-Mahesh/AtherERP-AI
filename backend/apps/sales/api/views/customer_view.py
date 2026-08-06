@@ -6,14 +6,23 @@ from apps.sales.api.serializers import (
 )
 
 
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import (
+    SearchFilter,
+    OrderingFilter,
+)
+
 class CustomerViewSet(ModelViewSet):
-    """
-    API endpoint for Customers.
-    """
 
     queryset = Customer.objects.all()
 
     serializer_class = CustomerSerializer
+
+    filter_backends = (
+        DjangoFilterBackend,
+        SearchFilter,
+        OrderingFilter,
+    )
 
     search_fields = (
         "customer_code",
